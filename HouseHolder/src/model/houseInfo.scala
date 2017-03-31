@@ -1,8 +1,10 @@
 package model
 
 class houseInfo {
+  //建物の種類
+  var buildingType: String = _
   //賃貸名
-  var houseName: String = _
+  var buildingName: String = _
   //画像URL
   var picture: String = _
   //住所
