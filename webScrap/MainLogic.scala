@@ -10,20 +10,17 @@ import scala.collection.mutable.Buffer
 object MainLogic extends App{
 
 	val urlstr = "http://suumo.jp/ikkodate/tokyo/sc_setagaya/"
-	val dateP1 = "[0-9]* ".r
-	val NONE = "Nome"
-
-	val main_jsoup_con = Jsoup.connect(urlstr)
-	var jsoup_con : Connection = null
+	val NONE = "None"
 
 	val urlList = createUrlList(getMaxPageNo(urlstr))
 	
 	createJsonFile(urlList)
 
 	def getMaxPageNo(urlstr : String): Int = {
-		//val doc = Jsoup.connect(urlstr).get
+		val main_jsoup_con = Jsoup.connect(urlstr)
 	    val element = main_jsoup_con.get.select(".pagination").asScala.head
 		var pageCntStr = ""
+		val dateP1 = "[0-9]* ".r		
 
 		dateP1.findAllIn(element.text).matchData.foreach { m =>	
 			pageCntStr = m.toString.trim
@@ -49,37 +46,35 @@ object MainLogic extends App{
 		var i_Id = 1
 	    val output = new File("./json/output_sumo.json")
 		
-		for(url <- list){
-			JsoupUtil.start(url)
-			val blocks = JsoupUtil.getElement(".property_unit-content")
+		list.par.map { url =>
+			val jsoup = JsoupUtil.start(url, ".property_unit-content")
 
-			for (block <- blocks){
+			jsoup.par.map { m =>
 				//タイトル、詳細画面url、画像、販売価格、所在地、駅、土地面積、間取り
-				val title = getTitle(block)
-				val detailUrl = getDetailUrl(block)
-				val img = getImg(block)
-				val minPrice = getMinPrice(block)
-				val maxPrice = getMaxPrice(block)
-				println(i_Id + "：" + minPrice)
-				println(i_Id + "：" + maxPrice)
-				//println(block.toString)
+				val title = getTitle(m)
+				val detailUrl = getDetailUrl(m)
+				val img = getImg(m)
+				val minPrice = getMinPrice(m)
+				val maxPrice = getMaxPrice(m)
+				val address = getAddress(m)
+				val station = getStation(m)
+				val minSpace = getMinSpace(m)
+				val maxSpace = getMaxSpace(m)
+				println("[" + i_Id + "]" + "======")
+				println("title" + "：" + title)
+				println("detailUrl" + "：" + detailUrl)
+				println("img" + "：" + img)
+				println("minPrice" + "：" + minPrice)
+				println("maxPrice" + "：" + maxPrice)
+				println("address" + "：" + address)
+				println("station" + "：" + station)
+				println("minSpace" + "：" + minSpace)
+				println("maxSpace" + "：" + maxSpace)
+				//println(m.toString)
 				i_Id = i_Id + 1	
 			}
-//			val img_ele   = JsoupUtil.getElement("a.ui-thumb.ui-thumb--1")
 
 	    	val file = new PrintWriter(output)
-
-//	    	createImgUrlList(img_ele)
-
-//	    	for (i <- 0 until title_ele.length) {
-				
-				
-
-//				val title = title_ele.apply(i).text
-//				val detailUrl = getDetailUrl(title_ele.apply(i))
-
-
-//				println(i_Id + detailUrl)
 
 				var b = new StringBuilder()
 				b ++= "{"
@@ -98,31 +93,13 @@ object MainLogic extends App{
 
 	def createUrl (pageNo : String) = urlstr + "pnz1" + pageNo + ".html"
 
-	// def getImgUrl (html : String): String = {
-	// 	val regex = """.* rel="(.*h=144)"""".r
-	// 	replaceUrl(regex.findFirstMatchIn(html))
-	// }
-
-   //  def createImgUrlList (b : Buffer[Element]): List[String] = { 
-   //  	var i_Id2 = 1
-   //  	var result = List[String]()
-   // 		for (e <- b){		
-   //  		val url = getImgUrl(e.toString)    		
-   //  		if(url != NONE) {
-			// 	println(i_Id2 + url)
-			// 	result :+= url
-			// 	i_Id2 = i_Id2 + 1
-			// }
-   //  	}
-   //  	result
-   //  }
-
 	def optCheck(o: Option[Match]) = {
 		o match {
 			case Some(s) => o.get.group(1)
 			case None => NONE
 		}
     }
+
 
     def getItem (target: String, regexStr: String): String = {
     	val doc = regexStr.r.findFirstMatchIn(target)
@@ -144,36 +121,81 @@ object MainLogic extends App{
     	getItem(e.toString, regex).replaceAll("amp;","")	    	
     }
 
-    def getMinPrice (e : Element): String = {
-    	val regex1 = """dottable-value">(.*)[万|億]円～.*</span>"""
-		val result1 = getItem(e.toString, regex1)
+    def getAddress (e : Element) = {
+    	val regex = """所在地\n.*\n.*\n\s+?(\S.*)"""
+    	getItem(e.toString, regex)	
+    }
 
-		if (result1 != NONE) return result1    	
+    def getStation (e : Element) = {
+    	val regex = """沿線・駅\n.*\n.*\n\s+?(\S.*)"""
+    	getItem(e.toString, regex)	
+    }
+
+    def getMinSpace (e : Element) = {
+    	val regex = """土地面積\n.*\n.*\n\s+?(\S.*)m"""
+    	getItem(e.toString, regex)
+    }
+
+    def getMaxSpace (e : Element): String = {
+    	val regex = """土地面積\n.*\n.*\n.*\n.*</sup>[～|・](.*)m"""
+    	val result = getItem(e.toString, regex)
+    	if (Utils.isNone(result)) return getMinSpace(e)
+    	result
+    }    
+
+    def getMinPrice (e : Element): String = {
+    	val regex1 = """dottable-value">(.*[万|億]).*～.*</span>"""
+		val result1 = getItem(e.toString, regex1)
+		if (result1 != NONE) return trimPrice(result1)
+
+    	val regex2 = """dottable-value">(.*[万|億]).*・.*</span>"""
+		val result2 = getItem(e.toString, regex2)		
+		if (result2 != NONE) return trimPrice(result2)
+
 		else return getPrice(e)
     }
 
     def getMaxPrice (e : Element): String = {
-    	val regex1 = """dottable-value">.*～(.*)[万|億]円</span>"""
+    	val regex1 = """dottable-value">.*～(.*[万|億]).*</span>"""
 		val result1 = getItem(e.toString, regex1)
+		if (result1 != NONE) return trimPrice(result1)
 
-		if (result1 != NONE) return result1    	
-		else return getPrice(e)	
+    	val regex2 = """dottable-value">.*・(.*[万|億]).*</span>"""
+		val result2 = getItem(e.toString, regex2)
+		if (result2 != NONE) return trimPrice(result2)
+
+		else return getPrice(e)
     }
 
     def getPrice (e: Element): String = {
-    	val regex1 = """dottable-value">(.*万)円</span>"""
+    	val regex1 = """dottable-value">(.*[万|億]).*</span>"""
 		val result1 = getItem(e.toString, regex1)
-		if (result1 != NONE) return result1    	
-
-		val regex2 = """dottable-value">(.*億)円</span>"""
-		val result2 = getItem(e.toString, regex2)
-		if (result2 != NONE) return result2    	
+		if (result1 != NONE) return trimPrice(result1)
 
     	val regex3 = """dottable-value">(未定)</span>"""
 		val result3 = getItem(e.toString, regex3)
-		if (result3 != NONE) return result3    	
+		if (result3 != NONE) return trimPrice(result3)
 
 		return NONE
     }
 
+    def trimPrice (str: String): String = {
+    	var result1, result2 = 0
+    	var b = new StringBuilder()
+    	str.foreach { s =>
+			if (s == '億') {
+				b ++= "0000"
+				result1 = b.toInt
+				b.setLength(0)
+			}
+			else if (s == '万') {
+				result2 = b.toInt
+				b.setLength(0)
+			}
+			else b ++= s.toString 		
+    	}
+
+    	if (result1 == 0 && result2 == 0) b.toString
+		else (result1 + result2).toString
+    }
 }

@@ -1,1 +1,1 @@
-[2017-04-14T00:11:40,348][INFO ][o.e.m.j.JvmGcMonitorService] [q31wdmh] [gc][109849] overhead, spent [405ms] collecting in the last [1s]
+[2017-04-17T02:05:41,086][INFO ][o.e.m.j.JvmGcMonitorService] [q31wdmh] [gc][148471] overhead, spent [355ms] collecting in the last [1s]
