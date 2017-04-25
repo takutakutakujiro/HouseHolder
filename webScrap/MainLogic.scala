@@ -7,6 +7,10 @@ import java.io.{File, PrintWriter}
 import scala.util.matching.Regex.Match
 import scala.collection.mutable.Buffer
 
+import Utils._
+import JsoupUtil._
+import JsonUtil._
+
 object MainLogic extends App{
 
 	val urlstr = "http://suumo.jp/ikkodate/tokyo/sc_setagaya/"
@@ -27,8 +31,8 @@ object MainLogic extends App{
 		}
 
 		println("[SUMO][世田谷区][最大ページ数]：" + pageCntStr)
-//		return pageCntStr.toInt
-		return 1
+		pageCntStr.toInt
+		//return 1
 	}
 
 	def createUrlList(maxPageNo : Int): List[String] = {
@@ -36,31 +40,71 @@ object MainLogic extends App{
 		for(iPage <- 1 to maxPageNo){
 			var createdUrl = createUrl(iPage.toString)
 			println("[SUMO][世田谷区][URL][" + iPage + "]：" + createdUrl)
-			listUrl :+= createdUrl 
+			listUrl = createdUrl :: listUrl
 		}
-		return listUrl
+		listUrl
 	}
 
-	def createJsonFile (list : List[String]): Unit = {
+	def createJsonFile (list : List[String]) {
+		val jsonStrList = createJsonString(list)
+		val output = new File("./json/output_sumo.json")
+	    val file = new PrintWriter(output)
 
-		var i_Id = 1
-	    val output = new File("./json/output_sumo.json")
-		
+		jsonStrList.foreach { m => 
+			file.println(getDefIndexJson + "\n" + m)
+		}
+
+		file.close
+	}
+
+	def createUrl (pageNo : String) = urlstr + "pnz1" + pageNo + ".html"
+
+	def createJsonString (list : List[String]): List[String] = {
+		var docList = List[String]()
 		list.par.map { url =>
-			val jsoup = JsoupUtil.start(url, ".property_unit-content")
-
+			val jsoup = start(url, ".property_unit-content")
+			var title, detailUrl, img, minPrice, maxPrice, address, station, minSpace, maxSpace, roomLayout : String = ""
+			 
 			jsoup.par.map { m =>
 				//タイトル、詳細画面url、画像、販売価格、所在地、駅、土地面積、間取り
-				val title = getTitle(m)
-				val detailUrl = getDetailUrl(m)
-				val img = getImg(m)
-				val minPrice = getMinPrice(m)
-				val maxPrice = getMaxPrice(m)
-				val address = getAddress(m)
-				val station = getStation(m)
-				val minSpace = getMinSpace(m)
-				val maxSpace = getMaxSpace(m)
-				println("[" + i_Id + "]" + "======")
+				title = getTitle(m)
+				detailUrl = getDetailUrl(m)
+				img = getImg(m)
+				minPrice = getMinPrice(m)
+				maxPrice = getMaxPrice(m)
+				address = getAddress(m)
+				station = getStation(m)
+				minSpace = getMinSpace(m)
+				maxSpace = getMaxSpace(m)
+				roomLayout = getRoomLayout(m)
+
+				var b = new StringBuilder()
+				b ++= "{"
+				b ++= getDocJson("title", title)
+				b ++= ","
+				b ++= getDocJson("detail_url", detailUrl)
+				b ++= ","
+				b ++= getDocJson("img", img)
+				b ++= ","
+				b ++= getDocJson("minPrice", minPrice)
+				b ++= ","
+				b ++= getDocJson("maxPrice", maxPrice)
+				b ++= ","
+				b ++= getDocJson("address", address)
+				b ++= ","
+				b ++= getDocJson("station", station)
+				b ++= ","
+				b ++= getDocJson("minSpace", minSpace)	
+				b ++= ","
+				b ++= getDocJson("maxSpace", maxSpace)	
+				b ++= ","
+				b ++= getDocJson("roomLayout", roomLayout)															
+				b ++= "}"
+
+				docList :+= b.toString
+
+				println
+				println("======")
 				println("title" + "：" + title)
 				println("detailUrl" + "：" + detailUrl)
 				println("img" + "：" + img)
@@ -70,28 +114,12 @@ object MainLogic extends App{
 				println("station" + "：" + station)
 				println("minSpace" + "：" + minSpace)
 				println("maxSpace" + "：" + maxSpace)
-				//println(m.toString)
-				i_Id = i_Id + 1	
+				println("roomLayout" + "：" + roomLayout)
+				//println(m.toString)	
 			}
-
-	    	val file = new PrintWriter(output)
-
-				var b = new StringBuilder()
-				b ++= "{"
-//				b ++= JasonUtil.getDocJson("title", title)
-				b ++= ","
-//				b ++= JasonUtil.getDocJson("detail_url", detailUrl)
-				b ++= "}"
-
-  				file.println(JasonUtil.getIndexJson(i_Id))
-  				file.println(b.result)  				
-				
-//			}
-			file.close
 		}
+		docList
 	}
-
-	def createUrl (pageNo : String) = urlstr + "pnz1" + pageNo + ".html"
 
 	def optCheck(o: Option[Match]) = {
 		o match {
@@ -112,7 +140,7 @@ object MainLogic extends App{
     }
 
     def getDetailUrl (e : Element) = {
-    	val regex = """<h2 class="property_unit-title">.*<a href=(.*) target"""
+    	val regex = """<h2 class="property_unit-title">.*<a href="(.*)" target"""
     	getItem(e.toString, regex)	
     }
 
@@ -139,8 +167,13 @@ object MainLogic extends App{
     def getMaxSpace (e : Element): String = {
     	val regex = """土地面積\n.*\n.*\n.*\n.*</sup>[～|・](.*)m"""
     	val result = getItem(e.toString, regex)
-    	if (Utils.isNone(result)) return getMinSpace(e)
+    	if (isNone(result)) return getMinSpace(e)
     	result
+    }
+
+	def getRoomLayout (e : Element): String = {
+    	val regex = """間取り\n.*\n.*\n\s+?(\S.*)"""
+    	getItem(e.toString, regex)
     }    
 
     def getMinPrice (e : Element): String = {

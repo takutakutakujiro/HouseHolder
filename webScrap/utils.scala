@@ -5,9 +5,10 @@ object JsoupUtil {
 	def start (url: String, tag: String) = Jsoup.connect(url).get.select(tag).asScala
 }
 
-object JasonUtil {
+object JsonUtil {
 	def getDocJson (key : String, value : String) = "\"" + key + "\":" + "\"" + value + "\""
 	def getIndexJson (no : Int) = """{"index":{"_id":"""" + no + """"}}"""
+	def getDefIndexJson = """{"index":{}}"""
 }
 
 object Utils {

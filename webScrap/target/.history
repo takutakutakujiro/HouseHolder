@@ -60,3 +60,9 @@ exit
 run
 runrun
 run
+val list = List("one", "two", "three", "4")
+val list1 = List("one", "two", "three", "4")
+var list = List("one", "two", "three", "4")
+val list = List("one", "two", "three", "4")
+val test = "てすと"
+run

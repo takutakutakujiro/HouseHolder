@@ -1,0 +1,2 @@
+[2017-04-20T22:38:56,464][INFO ][o.e.c.m.MetaDataCreateIndexService] [q31wdmh] [site] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2017-04-20T22:38:56,645][INFO ][o.e.c.m.MetaDataMappingService] [q31wdmh] [site/IE-0T4AQS4usF0bBcVl82A] create_mapping [test]
