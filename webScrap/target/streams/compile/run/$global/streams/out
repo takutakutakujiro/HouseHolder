@@ -1,6 +1,5 @@
 [0m[[0minfo[0m] [0mRunning MainLogic [0m
 [0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
-[0m[[0mdebug[0m] [0mWaiting for thread run-main-2 to terminate.[0m
 [0m[[0mdebug[0m] [0m  Classpath:[0m
 [0m[[0mdebug[0m] [0m	/Users/nishida-takuro/git/HouseHolder/webScrap/target/scala-2.10/classes[0m
 [0m[[0mdebug[0m] [0m	/Users/nishida-takuro/.sbt/boot/scala-2.10.6/lib/scala-library.jar[0m
@@ -58,7 +57,9 @@
 [0m[[0mdebug[0m] [0m	/Users/nishida-takuro/.ivy2/cache/org.apache.logging.log4j/log4j-core/jars/log4j-core-2.8.1.jar[0m
 [0m[[0mdebug[0m] [0m	/Users/nishida-takuro/.ivy2/cache/io.spray/spray-json_2.10/bundles/spray-json_2.10-1.3.3.jar[0m
 [0m[[0mdebug[0m] [0m	/Users/nishida-takuro/.ivy2/cache/org.jsoup/jsoup/jars/jsoup-1.7.2.jar[0m
-[0m[[0mdebug[0m] [0m	Thread run-main-2 exited.[0m
+[0m[[0mdebug[0m] [0mWaiting for thread run-main-13 to terminate.[0m
+[0m[[0mdebug[0m] [0m	Thread run-main-13 exited.[0m
 [0m[[0mdebug[0m] [0mInterrupting remaining threads (should be all daemons).[0m
+[0m[[0mdebug[0m] [0mNot interrupting system thread Thread[Keep-Alive-Timer,8,system][0m
 [0m[[0mdebug[0m] [0mSandboxed run complete..[0m
 [0m[[0mdebug[0m] [0mExited with code 0[0m
