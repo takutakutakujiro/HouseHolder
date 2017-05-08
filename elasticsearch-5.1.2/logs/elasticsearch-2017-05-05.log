@@ -1,0 +1,24 @@
+[2017-05-05T20:59:12,883][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-05-05T20:59:13,047][INFO ][o.e.e.NodeEnvironment    ] [q31wdmh] using [1] data paths, mounts [[/ (/dev/disk0s2)]], net usable_space [32gb], net total_space [112.6gb], spins? [unknown], types [hfs]
+[2017-05-05T20:59:13,047][INFO ][o.e.e.NodeEnvironment    ] [q31wdmh] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-05-05T20:59:13,078][INFO ][o.e.n.Node               ] node name [q31wdmh] derived from node ID [q31wdmhWRIevIUaQSA_J1A]; set [node.name] to override
+[2017-05-05T20:59:13,085][INFO ][o.e.n.Node               ] version[5.1.2], pid[86121], build[c8c4c16/2017-01-11T20:18:39.146Z], OS[Mac OS X/10.10.5/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_45/25.45-b02]
+[2017-05-05T20:59:15,814][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [aggs-matrix-stats]
+[2017-05-05T20:59:15,815][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [ingest-common]
+[2017-05-05T20:59:15,815][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [lang-expression]
+[2017-05-05T20:59:15,815][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [lang-groovy]
+[2017-05-05T20:59:15,815][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [lang-mustache]
+[2017-05-05T20:59:15,815][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [lang-painless]
+[2017-05-05T20:59:15,815][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [percolator]
+[2017-05-05T20:59:15,816][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [reindex]
+[2017-05-05T20:59:15,816][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [transport-netty3]
+[2017-05-05T20:59:15,816][INFO ][o.e.p.PluginsService     ] [q31wdmh] loaded module [transport-netty4]
+[2017-05-05T20:59:15,817][INFO ][o.e.p.PluginsService     ] [q31wdmh] no plugins loaded
+[2017-05-05T20:59:20,141][INFO ][o.e.n.Node               ] initialized
+[2017-05-05T20:59:20,141][INFO ][o.e.n.Node               ] [q31wdmh] starting ...
+[2017-05-05T20:59:20,440][INFO ][o.e.t.TransportService   ] [q31wdmh] publish_address {127.0.0.1:9300}, bound_addresses {[fe80::1]:9300}, {[::1]:9300}, {127.0.0.1:9300}
+[2017-05-05T20:59:23,746][INFO ][o.e.c.s.ClusterService   ] [q31wdmh] new_master {q31wdmh}{q31wdmhWRIevIUaQSA_J1A}{jgSzqK3_Sme7yD0P7pye8Q}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2017-05-05T20:59:23,787][INFO ][o.e.h.HttpServer         ] [q31wdmh] publish_address {127.0.0.1:9200}, bound_addresses {[fe80::1]:9200}, {[::1]:9200}, {127.0.0.1:9200}
+[2017-05-05T20:59:23,787][INFO ][o.e.n.Node               ] [q31wdmh] started
+[2017-05-05T20:59:24,055][INFO ][o.e.g.GatewayService     ] [q31wdmh] recovered [1] indices into cluster_state
+[2017-05-05T20:59:24,506][INFO ][o.e.c.r.a.AllocationService] [q31wdmh] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[site][2]] ...]).

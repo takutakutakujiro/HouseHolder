@@ -66,3 +66,12 @@ var list = List("one", "two", "three", "4")
 val list = List("one", "two", "three", "4")
 val test = "てすと"
 run
+val test = "てすと"
+run
+exit
+run
+exit
+run
+ls
+exit
+run
