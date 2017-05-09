@@ -1419,24 +1419,8 @@
 [0m[[0mdebug[0m] [0mdependency descriptor has been mediated: MergedDescriptors(dependency: org.scala-lang#scala-library;2.10.6 {scala-tool=[default, optional(default)]},dependency: org.scala-lang#scala-library;2.10.6 {compile=[default(compile)]}) => dependency: org.scala-lang#scala-library;2.10.6 {scala-tool=[default, optional(default)], compile=[default(compile)]}[0m
 [0m[[0minfo[0m] [0mResolving org.apache.logging.log4j#log4j-api;2.8.2 ...[0m
 [0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.apache.logging.log4j#log4j-api;2.8.2 {compile=[default(compile)]}[0m
-[0m[[0minfo[0m] [0mResolving org.apache.logging.log4j#log4j-api;2.8.2 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain-delegate: Checking cache for: dependency: org.apache.logging.log4j#log4j-api;2.8.2 {compile=[default(compile)]}[0m
-[0m[[0mdebug[0m] [0m		tried /Users/nishida-takuro/.ivy2/local/org.apache.logging.log4j/log4j-api/2.8.2/ivys/ivy.xml[0m
-[0m[[0mdebug[0m] [0m	local: no ivy file found for org.apache.logging.log4j#log4j-api;2.8.2[0m
-[0m[[0mdebug[0m] [0m		tried https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.pom[0m
-[0m[[0mdebug[0m] [0m	public: found md file for org.apache.logging.log4j#log4j-api;2.8.2[0m
-[0m[[0mdebug[0m] [0m		=> https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.pom (2.8.2)[0m
-[0m[[0mdebug[0m] [0mdownloading https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.pom ...[0m
-[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.pom[0m
-[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.pom.sha1[0m
-[0m[[0mdebug[0m] [0msha1 OK for https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.pom[0m
-[0m[[0mdebug[0m] [0m	[SUCCESSFUL ] org.apache.logging.log4j#log4j-api;2.8.2!log4j-api.pom(pom.original) (652ms)[0m
-[0m[[0minfo[0m] [0mResolving org.apache.logging.log4j#log4j;2.8.2 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: dependency: org.apache.logging.log4j#log4j;2.8.2 {}[0m
-[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.apache.logging.log4j#log4j;2.8.2[0m
-[0m[[0mdebug[0m] [0m		tried /Users/nishida-takuro/.ivy2/local/org.apache.logging.log4j/log4j-api/2.8.2/jars/log4j-api.jar[0m
-[0m[[0mdebug[0m] [0m		tried https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.jar[0m
-[0m[[0mdebug[0m] [0m	found org.apache.logging.log4j#log4j-api;2.8.2 in public[0m
+[0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.apache.logging.log4j#log4j-api;2.8.2[0m
+[0m[[0mdebug[0m] [0m	found org.apache.logging.log4j#log4j-api;2.8.2 in sbt-chain[0m
 [0m[[0mdebug[0m] [0m== resolving dependencies apphouse#apphouse_2.10;1.0->org.apache.logging.log4j#log4j-api;2.8.2 [compile->runtime][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies apphouse#apphouse_2.10;1.0->org.apache.logging.log4j#log4j-api;2.8.2 [compile->compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies apphouse#apphouse_2.10;1.0->org.apache.logging.log4j#log4j-api;2.8.2 [compile->master][0m
@@ -16755,12 +16739,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.play#twirl-api_2.10;1.1.1!twirl-api_2.10.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.play#play-server_2.10;2.4.4!play-server_2.10.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] com.typesafe.play#play-netty-server_2.10;2.4.4!play-netty-server_2.10.jar[0m
-[0m[[0mdebug[0m] [0m		tried https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.jar[0m
-[0m[[0minfo[0m] [0mdownloading https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.jar ...[0m
-[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.jar[0m
-[0m[[0mdebug[0m] [0m	public: downloading https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.jar.sha1[0m
-[0m[[0mdebug[0m] [0msha1 OK for https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.jar[0m
-[0m[[0minfo[0m] [0m	[SUCCESSFUL ] org.apache.logging.log4j#log4j-api;2.8.2!log4j-api.jar (1193ms)[0m
+[0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.apache.logging.log4j#log4j-api;2.8.2!log4j-api.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.apache.logging.log4j#log4j-core;2.8.2!log4j-core.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.elasticsearch#elasticsearch;5.1.2!elasticsearch.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.elasticsearch.client#transport;5.1.2!transport.jar[0m
@@ -16898,7 +16877,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-compiler;2.10.6!scala-compiler.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.6!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 3457ms :: artifacts dl 1235ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 5221ms :: artifacts dl 79ms[0m
 [0m[[0mdebug[0m] [0m	report for apphouse#apphouse_2.10;1.0 compile produced in /Users/nishida-takuro/git/HouseHolder/AppHouse/target/resolution-cache/reports/apphouse-apphouse_2.10-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for apphouse#apphouse_2.10;1.0 runtime produced in /Users/nishida-takuro/git/HouseHolder/AppHouse/target/resolution-cache/reports/apphouse-apphouse_2.10-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for apphouse#apphouse_2.10;1.0 test produced in /Users/nishida-takuro/git/HouseHolder/AppHouse/target/resolution-cache/reports/apphouse-apphouse_2.10-test.xml[0m
@@ -16912,5 +16891,5 @@
 [0m[[0mdebug[0m] [0m	report for apphouse#apphouse_2.10;1.0 docs produced in /Users/nishida-takuro/git/HouseHolder/AppHouse/target/resolution-cache/reports/apphouse-apphouse_2.10-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for apphouse#apphouse_2.10;1.0 pom produced in /Users/nishida-takuro/git/HouseHolder/AppHouse/target/resolution-cache/reports/apphouse-apphouse_2.10-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for apphouse#apphouse_2.10;1.0 scala-tool produced in /Users/nishida-takuro/git/HouseHolder/AppHouse/target/resolution-cache/reports/apphouse-apphouse_2.10-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (3457ms resolve - 1235ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (5221ms resolve - 79ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="compile-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20170505092254"/>
+		date="20170510003004"/>
 	<dependencies>
 		<module organisation="org.elasticsearch.client" name="transport">
 			<revision name="5.1.2" status="release" pubdate="20170112061250" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/elastic/elasticsearch" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="69">
@@ -657,12 +657,12 @@
 			</revision>
 		</module>
 		<module organisation="org.apache.logging.log4j" name="log4j-api">
-			<revision name="2.8.2" status="release" pubdate="20170403052410" resolver="public" artresolver="public" homepage="" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="39">
+			<revision name="2.8.2" status="release" pubdate="20170403052410" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="39">
 				<license name="Apache License, Version 2.0" url="https://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="successful" details="" size="8746" time="652" location="/Users/nishida-takuro/.ivy2/cache/org.apache.logging.log4j/log4j-api/ivy-2.8.2.xml" searched="true" original-local-location="/Users/nishida-takuro/.ivy2/cache/org.apache.logging.log4j/log4j-api/ivy-2.8.2.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.pom"/>
+				<metadata-artifact status="no" details="" size="28234" time="0" location="/Users/nishida-takuro/.ivy2/cache/org.apache.logging.log4j/log4j-api/ivy-2.8.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.pom"/>
 				<caller organisation="apphouse" name="apphouse_2.10" conf="compile-internal, compile, provided, optional" rev="2.8.2" rev-constraint-default="2.8.2" rev-constraint-dynamic="2.8.2" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="log4j-api" type="jar" ext="jar" status="successful" details="" size="228154" time="1193" location="/Users/nishida-takuro/.ivy2/cache/org.apache.logging.log4j/log4j-api/jars/log4j-api-2.8.2.jar">
+					<artifact name="log4j-api" type="jar" ext="jar" status="no" details="" size="228154" time="0" location="/Users/nishida-takuro/.ivy2/cache/org.apache.logging.log4j/log4j-api/jars/log4j-api-2.8.2.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.8.2/log4j-api-2.8.2.jar"/>
 					</artifact>
 				</artifacts>

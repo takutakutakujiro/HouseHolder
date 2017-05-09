@@ -66,21 +66,13 @@ object MainLogic extends App{
 						"roomLayout" -> getRoomLayout(m)
 					)
 					println("\n======")
-					b ++= singlton.createJsonString(docJson)
+					b ++= createJsonString(docJson)
 				}
 			}
 		}
 		b.toString
 	}
 
-	def optCheck(o: Option[Match]) = {
-		o match {
-			case Some(s) => o.get.group(1)
-			case None => NONE
-		}
-    }
-
-    def getItem (target: String, regexStr: String): String = optCheck(regexStr.r.findFirstMatchIn(target))
     def getTitle      (e : Element): String = getItem(e.toString, """<h2 class="property_unit-title">.*<a.*>(.*)</a></h2>""")
     def getDetailUrl  (e : Element): String = getItem(e.toString, """<h2 class="property_unit-title">.*<a href="(.*)" target""")
     def getImg        (e : Element): String = getItem(e.toString, """rel="(.*)" alt""").replaceAll("amp;","")
@@ -142,9 +134,7 @@ object MainLogic extends App{
     }
 
     def trimPriceCal (oku: Int, man: Int) = oku * 10000 + man
-}
 
-object singlton {
 	def createJsonString (listMap: ListMap[String, String]): String = {
 		val b = new StringBuilder()
 		b ++= getDefIndexJson
