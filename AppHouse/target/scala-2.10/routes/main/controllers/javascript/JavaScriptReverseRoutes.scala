@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/nishida-takuro/git/HouseHolder/AppHouse/conf/routes
-// @DATE:Thu May 04 02:21:02 JST 2017
+// @DATE:Mon May 15 00:27:12 JST 2017
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -14,7 +14,7 @@ import _root_.controllers.Assets.Asset
 package controllers.javascript {
   import ReverseRouteContext.empty
 
-  // @LINE:2
+  // @LINE:3
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -22,7 +22,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:2
+    // @LINE:3
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -48,6 +48,16 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"GET", url:"""" + _prefix + """"})
+        }
+      """
+    )
+  
+    // @LINE:2
+    def nextContent: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.nextContent",
+      """
+        function(test) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "page/" + (""" + implicitly[PathBindable[Int]].javascriptUnbind + """)("test", test)})
         }
       """
     )

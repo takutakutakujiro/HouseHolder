@@ -1,8 +1,10 @@
-@(houseMap: List[Map[String, String]])
+@(elaListMap: List[Map[String, String]], viewListMap: List[Map[String, String]], pageNo: Int)
+@url = @{"http://localhost:9000/page/"}
 
 @main("HouseHolder"){
 	@navi
 	@list
+	@page
 }
 @navi = {
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -49,14 +51,79 @@
 }
 
 @list = {
-	<div style="margin-top: 100px">
-		<ul>
-			@for( m <- houseMap){
-				<li>@m("title")</li>
-				<li>@m("minPrice")</li>
-			}
-		</ul>
-	<div>
+	<div class="property_unit-content" style="margin-top: 100px">
+
+	@for( map <- viewListMap){
+		<div class="container">
+			<a href="@map("detail_url")" target="_blank">
+				<div class="col-xs-12"><h4>@map("title")</h4></div>
+				<div class="col-xs-4"><img src="@map("img")" rel="" alt="" width="192" height="144"></div>
+			</a>
+			<div class="col-xs-2 item">販売価格</div>
+			<div class="col-xs-6 item">
+				@if(map("minPrice") == map("maxPrice")){
+					@map("minPrice")
+				} else {
+					@map("minPrice") ~ @map("maxPrice")
+				}
+			</div>
+			<div class="col-xs-2 item">所在地</div>
+			<div class="col-xs-6 item">@map("address")</div>	
+			<div class="col-xs-2 item">沿線・駅</div>
+			<div class="col-xs-6 item">@map("station")</div>											
+			<div class="col-xs-2 item">土地面積</div>
+			<div class="col-xs-6 item">
+				@if(map("minSpace") == map("maxSpace")){
+					@map("minSpace")
+				} else {
+					@map("minSpace") ~ @map("maxSpace")
+				}
+				m<sup>2</sup>
+			</div>
+			<div class="col-xs-2 item">間取り</div>
+			<div class="col-xs-6 item">@map("roomLayout")</div>
+		</div>
+	}
+	</div>
 }
 
-
+@page = {
+	<nav class="pagecontent" aria-label="Page navigation example">
+	  <ul class="pagination">
+	    <li class="page-item">
+	      @if(pageNo == 1){
+            <a class="page-link" href="#" aria-label="Previous">
+	      } else {
+	      	<a class="page-link" href="@{url}@{pageNo-1}" aria-label="Previous">
+	      }
+	        <span aria-hidden="true">&laquo;</span>
+	        <span class="sr-only">Previous</span>
+	      </a>
+	    </li>
+	    @if(pageNo == 1 || pageNo == 2){
+			<li class="page-item"><a class="page-link" href="@{url}1">1</a></li>
+	    	<li class="page-item"><a class="page-link" href="@{url}2">2</a></li>
+	    	<li class="page-item"><a class="page-link" href="@{url}3">3</a></li>
+	    	<li class="page-item"><a class="page-link" href="@{url}4">4</a></li>
+	    	<li class="page-item"><a class="page-link" href="@{url}5">5</a></li>
+	    } else {
+	    	<li class="page-item"><a class="page-link" href="@{url}@{pageNo-2}">@{pageNo - 2}</a></li>	    
+	    	<li class="page-item"><a class="page-link" href="@{url}@{pageNo-1}">@{pageNo - 1}</a></li>
+		    <li class="page-item"><a class="page-link" href="@{url}@{pageNo}">@pageNo</a></li>
+		    <li class="page-item"><a class="page-link" href="@{url}@{pageNo+1}">@{pageNo + 1}</a></li>
+	    	<li class="page-item"><a class="page-link" href="@{url}@{pageNo+2}">@{pageNo + 2}</a></li>		    
+	    }
+	    
+	    <li class="page-item">
+	      @if(pageNo == 1){
+            <a class="page-link" href="#" aria-label="Next">
+	      } else {
+	      	<a class="page-link" href="@{url}@{pageNo+1}" aria-label="Next">
+	      }
+	        <span aria-hidden="true">&raquo;</span>
+	        <span class="sr-only">Next</span>
+	      </a>
+	    </li>
+	  </ul>
+	</nav>
+}

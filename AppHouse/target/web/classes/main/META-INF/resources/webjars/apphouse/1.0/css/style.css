@@ -1,0 +1,13 @@
+.container{
+	 width: 700px;
+	 margin-top: 30px;
+}
+
+.item {
+	margin : 3px 0 3px 0;
+}
+
+.pagecontent {
+	margin-top: 30px;
+	text-align-last: center;
+}

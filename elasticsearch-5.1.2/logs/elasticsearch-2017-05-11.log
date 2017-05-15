@@ -1,0 +1,2 @@
+[2017-05-11T23:33:59,087][INFO ][o.e.m.j.JvmGcMonitorService] [q31wdmh] [gc][young][37812][6] duration [900ms], collections [1]/[1.1s], total [900ms]/[4.4s], memory [424.6mb]->[159.1mb]/[1.9gb], all_pools {[young] [266.2mb]->[456.6kb]/[266.2mb]}{[survivor] [4.8mb]->[5.6mb]/[33.2mb]}{[old] [153.5mb]->[153.5mb]/[1.6gb]}
+[2017-05-11T23:33:59,146][WARN ][o.e.m.j.JvmGcMonitorService] [q31wdmh] [gc][37812] overhead, spent [900ms] collecting in the last [1.1s]

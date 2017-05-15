@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/nishida-takuro/git/HouseHolder/AppHouse/conf/routes
-// @DATE:Thu May 04 02:21:02 JST 2017
+// @DATE:Mon May 15 00:27:12 JST 2017
 
 package router
 
@@ -38,6 +38,7 @@ class Routes extends GeneratedRouter {
 
   def documentation: Seq[(String, String, String)] = List(
     ("""GET""", prefix, """controllers.Application.index"""),
+    ("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """page/$test<[^/]+>""", """controllers.Application.nextContent(test:Int)"""),
     ("""GET""", prefix + (if(prefix.endsWith("/")) "" else "/") + """asset/$file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -64,10 +65,27 @@ class Routes extends GeneratedRouter {
   )
 
   // @LINE:2
-  private[this] lazy val controllers_Assets_versioned1_route: Route.ParamsExtractor = Route("GET",
+  private[this] lazy val controllers_Application_nextContent1_route: Route.ParamsExtractor = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("page/"), DynamicPart("test", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_Application_nextContent1_invoker = createInvoker(
+    controllers.Application.nextContent(fakeValue[Int]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Application",
+      "nextContent",
+      Seq(classOf[Int]),
+      "GET",
+      """""",
+      this.prefix + """page/$test<[^/]+>"""
+    )
+  )
+
+  // @LINE:3
+  private[this] lazy val controllers_Assets_versioned2_route: Route.ParamsExtractor = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("asset/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned1_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned2_invoker = createInvoker(
     controllers.Assets.versioned(fakeValue[String], fakeValue[Asset]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -90,9 +108,15 @@ class Routes extends GeneratedRouter {
       }
   
     // @LINE:2
-    case controllers_Assets_versioned1_route(params) =>
+    case controllers_Application_nextContent1_route(params) =>
+      call(params.fromPath[Int]("test", None)) { (test) =>
+        controllers_Application_nextContent1_invoker.call(controllers.Application.nextContent(test))
+      }
+  
+    // @LINE:3
+    case controllers_Assets_versioned2_route(params) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned1_invoker.call(controllers.Assets.versioned(path, file))
+        controllers_Assets_versioned2_invoker.call(controllers.Assets.versioned(path, file))
       }
   }
 }

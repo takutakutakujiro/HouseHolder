@@ -1,2 +1,3 @@
 GET /  controllers.Application.index
+GET /page/:test controllers.Application.nextContent(test: Int)
 GET  /asset/*file    controllers.Assets.versioned(path="/public", file: Asset)

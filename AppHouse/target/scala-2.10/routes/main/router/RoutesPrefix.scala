@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/nishida-takuro/git/HouseHolder/AppHouse/conf/routes
-// @DATE:Thu May 04 02:21:02 JST 2017
+// @DATE:Mon May 15 00:27:12 JST 2017
 
 
 package router {

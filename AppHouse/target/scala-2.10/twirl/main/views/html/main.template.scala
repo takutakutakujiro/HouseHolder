@@ -36,10 +36,12 @@ Seq[Any](format.raw/*1.32*/("""
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- BootstrapのJS読み込み -->
 	<script src=""""),_display_(/*14.16*/routes/*14.22*/.Assets.versioned("js/bootstrap.min.js")),format.raw/*14.62*/(""""></script>
+	<!-- CSS読み込み -->
+	<link href=""""),_display_(/*16.15*/routes/*16.21*/.Assets.versioned("css/style.css")),format.raw/*16.55*/("""" rel="stylesheet">
  </head>
  	<body>
-  		"""),_display_(/*17.6*/content),format.raw/*17.13*/("""
- 	"""),format.raw/*18.3*/("""</body>
+  		"""),_display_(/*19.6*/content),format.raw/*19.13*/("""
+ 	"""),format.raw/*20.3*/("""</body>
 </html>
 """))
       }
@@ -61,11 +63,11 @@ Seq[Any](format.raw/*1.32*/("""
 object main extends main_Scope0.main
               /*
                   -- GENERATED --
-                  DATE: Thu May 04 23:44:54 JST 2017
+                  DATE: Sun May 14 22:11:19 JST 2017
                   SOURCE: /Users/nishida-takuro/git/HouseHolder/AppHouse/app/views/main.scala.html
-                  HASH: b9ed0ed5cc55f27b59d8f75cb8eb7da41b6b85d8
-                  MATRIX: 530->1|655->31|682->32|958->281|973->287|1036->329|1237->503|1252->509|1313->549|1374->584|1402->591|1432->594
-                  LINES: 20->1|25->1|26->2|34->10|34->10|34->10|38->14|38->14|38->14|41->17|41->17|42->18
+                  HASH: 9a82e40e5d6eb8b76bef258bdf206f7457089d7f
+                  MATRIX: 530->1|655->31|682->32|958->281|973->287|1036->329|1237->503|1252->509|1313->549|1384->593|1399->599|1454->633|1523->676|1551->683|1581->686
+                  LINES: 20->1|25->1|26->2|34->10|34->10|34->10|38->14|38->14|38->14|40->16|40->16|40->16|43->19|43->19|44->20
                   -- GENERATED --
               */
           
